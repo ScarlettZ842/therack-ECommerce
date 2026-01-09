@@ -1,4 +1,10 @@
 ![banner](https://banners.beyondco.de/The%20Rack.png?theme=light&packageManager=&packageName=https%3A%2F%2Fgithub.com%2Fsherwinchia%2Ftherack&pattern=rain&style=style_1&description=Laravel+7+Ecommerce+Website&md=0&showWatermark=0&fontSize=125px&images=shopping-cart&widths=250&heights=250)
+<img width="1359" height="727" alt="Screenshot 2026-01-08 at 18 56 03" src="https://github.com/user-attachments/assets/a9f9d72b-3e74-4018-8bef-f426ecb194d6" />
+<img width="1407" height="690" alt="Screenshot 2026-01-08 at 18 58 06" src="https://github.com/user-attachments/assets/a03d5294-2c97-4f25-bb58-d14ad686791a" />
+<img width="1352" height="731" alt="Screenshot 2026-01-08 at 18 58 26" src="https://github.com/user-attachments/assets/73291f3e-7081-4cf0-890d-0e4d18d24656" />
+<img width="1336" height="736" alt="Screenshot 2026-01-08 at 18 56 43" src="https://github.com/user-attachments/assets/de518b70-8c83-49ad-b4c4-03dee71e9271" />
+<img width="1431" height="742" alt="Screenshot 2026-01-08 at 19 06 07" src="https://github.com/user-attachments/assets/f0216ef0-6559-43fb-93a3-e2468f4f47f9" />
+
 
 ## The Rack - Ecommerce Website
 
