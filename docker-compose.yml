@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+  # PHP Application Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: therack-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./storage:/var/www/storage
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=therack
+      - DB_USERNAME=therack_user
+      - DB_PASSWORD=secret
+    depends_on:
+      - mysql
+    networks:
+      - therack-network
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:alpine
+    container_name: therack-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - therack-network
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: therack-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: therack
+      MYSQL_USER: therack_user
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - therack-network
+
+  # PhpMyAdmin for database management
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: therack-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_secret
+    depends_on:
+      - mysql
+    networks:
+      - therack-network
+
+  # Node.js for asset compilation
+  node:
+    image: node:16-alpine
+    container_name: therack-node
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - therack-network
+
+networks:
+  therack-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
